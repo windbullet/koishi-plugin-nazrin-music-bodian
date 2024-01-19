@@ -15,7 +15,6 @@ export function apply(ctx: Context) {
 
   ctx.on("nazrin/music", async (ctx, keyword) => {
     let result = await ctx.http.get(`https://api.xingzhige.com/API/Kuwo_BD_new/?name=${encodeURIComponent(keyword)}`)
-    console.log(result)
     let findList = []
     if (result.code !== 0) {
       findList = [
@@ -37,7 +36,6 @@ export function apply(ctx: Context) {
         })
       }
     }
-    console.log(findList)
 
     ctx.emit('nazrin/search_over', findList)
   })

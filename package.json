@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-nazrin-music-bodian",
   "description": "nazrin聚合搜索-波点音乐支持",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
