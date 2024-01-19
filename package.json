@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-nazrin-music-bodian",
   "description": "nazrin聚合搜索-波点音乐支持",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -9,13 +9,20 @@
     "dist"
   ],
   "license": "MIT",
-  "scripts": {},
+  "homepage": "https://github.com/windbullet/koishi-plugin-nazrin-music-bodian",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/windbullet/koishi-plugin-nazrin-music-bodian.git"
+  },
   "keywords": [
     "chatbot",
     "koishi",
     "plugin"
   ],
   "peerDependencies": {
-    "koishi": "4.16.4"
+    "koishi": "^4.16.4"
+  },
+  "devDependencies": {
+    "koishi-plugin-nazrin-core": "^0.1.10"
   }
 }
