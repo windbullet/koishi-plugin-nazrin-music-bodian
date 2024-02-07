@@ -43,15 +43,21 @@ export function apply(ctx: Context) {
   ctx.on("nazrin/parse_music", async (ctx, platform, url, data) => {
     if (platform !== thisPlatform) return
 
-    let {data: songdata} = await ctx.http.get(`https://api.xingzhige.com/API/Kuwo_BD_new/?name=${encodeURIComponent(data.name)}&n=${data.n}`)
-    let second = (+songdata.interval.slice(0, songdata.interval.lastIndexOf("分")) * 60) + songdata.interval.slice(songdata.interval.lastIndexOf("分") + 1, songdata.interval.lastIndexOf("秒"))
-    ctx.emit('nazrin/parse_over', 
-      songdata.src,
-      songdata.songname,
-      songdata.name,
-      songdata.cover,
-      second,
-      +songdata.kbps.slice(0, songdata.kbps.lastIndexOf("kbps")),
-    )
+    let result = await ctx.http.get(`https://api.xingzhige.com/API/Kuwo_BD_new/?name=${encodeURIComponent(data.name)}&n=${data.n}`)
+    if (result.code !== 0) {
+      ctx.emit('nazrin/parse_error', result.msg)
+    } else {
+      let {data: songdata} = result
+      let second = (+songdata.interval.slice(0, songdata.interval.lastIndexOf("分")) * 60) + songdata.interval.slice(songdata.interval.lastIndexOf("分") + 1, songdata.interval.lastIndexOf("秒"))
+      ctx.emit('nazrin/parse_over', 
+        songdata.src,
+        songdata.songname,
+        songdata.name,
+        songdata.cover,
+        second,
+        +songdata.kbps.slice(0, songdata.kbps.lastIndexOf("kbps")),
+      )
+    }
+    
   })
 }
